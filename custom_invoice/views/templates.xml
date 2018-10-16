@@ -1,0 +1,101 @@
+<odoo>
+  <data>
+
+        <!-- Inherit Invoice  report (from module account) -->
+        <template id="report_invoice_test_inherit_demo" inherit_id="account.report_invoice_document">
+
+            <xpath  expr="//p[@name='payment_term']" position="after">
+       <!--     <xpath  expr="//div[@class='row mt32 mb32']//div" position="replace">-->
+
+
+
+                 <p class="text-center">
+
+                        <b>Made from System by : <span t-field="o.user_id"/> </b>
+
+                    </p>
+
+            </xpath>
+
+             <xpath  expr="//div[@class='page']//p[1]" position="replace">
+
+
+
+            </xpath>
+
+          <xpath  expr="//table[@name='invoice_line_table']//thead//tr//th[6]" position="replace">
+
+
+
+            </xpath>
+
+          <xpath  expr="//t[@name='account_invoice_line_accountable']//td[6]" position="replace">
+
+
+
+            </xpath>
+
+
+             <xpath  expr="//div[@class='mt16']" position="before">
+
+              <p class="text-left">
+
+                  <span>Customer</span>
+              </p>
+
+
+
+
+            </xpath>
+
+
+        <xpath  expr="//div[@name='reference']" position="after">
+
+              <div name="dispatch" class="col-auto" >
+                            <strong>Dispatch By:</strong>
+                            <p> Factory </p>
+                        </div>
+
+
+
+
+            </xpath>
+
+
+              <xpath  expr="//div[@name='due_date']" position="replace">
+
+
+
+            </xpath>
+
+            <xpath  expr="//div[@name='origin']" position="replace">
+
+
+
+            </xpath>
+
+
+
+            <xpath  expr="//div[@name='invoice_date']" position="after">
+
+
+                    <div class="col-auto" t-if="o.date_due and o.type == 'out_invoice' and o.state in ('open', 'in_payment', 'paid')" name="due_delivery_date">
+                            <strong>Delivery/Due Date:</strong>
+                            <p t-field="o.date_due"/>
+                        </div>
+
+            </xpath>
+
+              <xpath  expr="//div[@name='reference']" position="after">
+
+            <div class="col-auto" t-if="o.origin" name="origin_modified">
+                            <strong>Po#:</strong>
+                            <p t-field="o.origin"/>
+                        </div>
+
+              </xpath>
+        </template>
+
+
+  </data>
+</odoo>
